@@ -1,0 +1,17 @@
+.container.main {
+    margin-top: 8.0em; 
+}
+
+/*body{*/
+/*    background-color: purple;*/
+/*}*/
+
+i.icon{
+  font-size: 2em;  
+}
+.dskindex{
+    margin-top: 100px;
+}
+#delete{
+    display:inline;
+}
