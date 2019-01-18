@@ -1,5 +1,4 @@
 <% include ./partials/header %>
-
 <div class="ui main text container">
     <div class="ui huge header"><%= blog.title %></div>
     <div class="ui top attached segment">
@@ -7,15 +6,35 @@
           <img class="ui centered rounded image" src="<%= blog.image %>">
          </div>
          <div class="content">
-            <span><%= blog.created.toDateString() %> </span>
+            <span>Published On - <strong><%= blog.created.toDateString() %></strong> </span>
          </div>
          <div class="description">
              <p><%- blog.body %></p>
         </div>
-        <a href="/blogs/<%= blog._id %>/edit" class="ui yellow inverted big button">Edit</a>
+        <div class="submission">
+             <p>Submitted by~<strong><a href="/users/<%= blog.author.id %>"><%= blog.author.username %></a></strong></p>
+        
+        </div>
+         <% if(currentUser && blog.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
         <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST" id="delete">
-            <button class="ui inverted red big button">Delete</button>
+            <button class="ui inverted red big button right floated">Delete</button>
         </form>
+        <a href="/blogs/<%= blog._id %>/edit" class="ui orange inverted big button right floated">Edit</a>
+        <% } %>
+        <div>
+                <a class="ui violet inverted big button" href="/blogs/<%= blog._id%>/comments/new">Add new comment</a>
+        </div>
+          <% blog.comments.forEach(function(comment){ %>
+                               <div class="ui black inverted segment comments"><strong><%= comment.author.username %></strong><br>~  <span class="comment"><%= comment.text %></span>
+                               <div class="caption"><%= moment(comment.createdAt).fromNow() %></div>
+         <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                               <form action="/blogs/<%= blog._id %>/comments/<%=comment._id%>?_method=DELETE" method="POST" class="delete-form">
+                                <input type="submit" class="ui inverted red tiny button right floated" value="delete">
+                            </form>
+                            <a class="ui inverted brown tiny button right floated" href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit">edit</a>
+                            <% } %>
+                            </div>
+                                         <% })%>
     </div>
 </div>
 

@@ -5,18 +5,19 @@
 <form action="/blogs" method="POST" class="ui form">
     <div class="field">
         <label>Title</label>
-        <input type="text" name="blog[title]" placeholder="title">
+        <input type="text" name="blog[title]" placeholder="title" autofocus>
     </div>
     <div class="field">
         <label>Image</label>
-        <input type="text" name="blog[image]" placeholder="image">
+        <input type="text" name="blog[image]" placeholder="image" autofocus>
     </div>
     <div class="field">
         <label>Blog Content</label>
-        <textarea name="blog[body]"></textarea>
+        <textarea name="blog[body]" autofocus></textarea>
         <!--<input type="text" name="blog[body]" placeholder="blog post goes here">-->
     </div>
     <input type="submit" class="ui big green inverted button">
+    <a href="/blogs" class="ui big brown inverted button">Go Back</a>
 </form>
 </div>
 <% include ./partials/footer %>

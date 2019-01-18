@@ -7,10 +7,39 @@
     </head>
     <body>
         <div class="ui fixed inverted menu">
-            <div class="ui container">
-                <div class="header item"><i class="code icon"></i>Blog Site</div>
+            <div class="ui container ">
+                <div class="header item"><i class="book icon"></i>Blog</div>
                 <a href="/" class="item">Home</a>
                 <a href="/blogs/new" class="item">New Post</a>
-        
+            <form action="/blogs" method="GET" class="item">
+                <div class="ui icon input inverted placeholder" >
+        <input type="text" name="search" placeholder="Search..." autofocus>
+        <button><i class="search link icon"></i></button>
+      </div>
+      </form>
+                <%    if(!currentUser){ %>
+                <a href="/login" class="item">Login</a>
+                <a href="/forgot" class="item">Forgot Password?</a>
+                <a href="/register" class="item">Register</a>
+                  
+                <%    } else { %>
+                    <a class="item" href="/users/<%= currentUser.id %>"%>"><%= currentUser.username %></a>
+                                    <a href="/logout" class="item">Logout</a>
+                                  
+                <%    }  %>
+                
+                
             </div>
+        </div>
+        <div class="ui container main" >
+           <% if(error && error.length>0){ %>
+           <div class="ui red message">
+        <p><%= error %></p>
+        </div>
+        <% } %>
+        <% if(success && success.length>0){ %>
+                <div class="ui green message">
+            <p><%= success %></p>
+        </div>
+        <% } %>
         </div>

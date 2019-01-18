@@ -1,7 +1,7 @@
 <% include ./partials/header %>
 
 <div class="ui container main text">
-    <div class="ui huge header">RESTful Blog App</div>
+    <div class="ui huge header">SSK Blog App</div>
     <div class="ui top attached segment">
         <div class="ui divided items">
             <% blogs.forEach(function(blog){ %>
@@ -24,6 +24,11 @@
                     </div>    
                 </div>
             <% }); %> 
+            <div class="item">
+                       <% if(noMatch !== null) { %>
+             <h3><%= noMatch %></h3>
+             <% } %>
+            </div>
         </div>    
     </div>
 </div>

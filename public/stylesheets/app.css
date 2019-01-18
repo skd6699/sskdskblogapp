@@ -1,13 +1,11 @@
 .container.main {
     margin-top: 8.0em; 
 }
-
-/*body{*/
-/*    background-color: purple;*/
-/*}*/
-
 i.icon{
   font-size: 2em;  
+}
+i.search{
+  font-size: 1.3em;  
 }
 .dskindex{
     margin-top: 100px;
@@ -15,3 +13,28 @@ i.icon{
 #delete{
     display:inline;
 }
+p{
+    line-height: 1.8;
+     padding: 5px;
+     
+}
+.description{
+    padding: 8px;
+    text-align: justify;
+     word-spacing: 4px;
+     font-size: 17px;
+}
+.comments{
+    overflow: hidden;
+}
+.comment{
+    font-size: 18px;
+}
+input:invalid {
+    border:1px solid red;
+}
+strong{
+    font-size: 1.5em;
+    padding: 2px;
+}
+

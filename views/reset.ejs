@@ -1,0 +1,16 @@
+<% include ./partials/header %>
+<div class="ui main text container segment" style="width:25%">
+    <div class="ui huge header">Reset Password</div>
+<form action="/reset/<%= token %>" method="POST" class="ui form">
+    <div class="field">
+        <label>New Password</label>
+        <input type="password" placeholder="password" name="password" title="Password (UpperCase, LowerCase, Number/SpecialChar and min 8 Chars)" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" autofocus>
+    </div>
+    <div class="field">
+        <label>Confirm New Password</label>
+        <input type="password" placeholder="password" name="confirm"  autofocus>
+    </div>
+    <input type="submit" value="Update Password" class="ui big green inverted button">
+</form>
+</div>
+<% include ./partials/footer %>

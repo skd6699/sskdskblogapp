@@ -1,0 +1,37 @@
+  <% include ./partials/header %>
+
+<div class="ui main text container segment" style="width:25%">
+<div class="ui huge header">Register</div>
+<form action="/register" method="POST" class="ui form">
+    <div class="field">
+        <label>Email</label>
+        <input type="email" placeholder="example@example.com"  name="email" autofocus required>
+    </div>
+    <div class="field">
+        <label>Username</label>
+        <input type="text" placeholder="username" title="Username with 2-20 chars starting with lowercase/uppercase special character:-_. allowed" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" name="username" autofocus required>
+    </div>
+    <div class="field">
+        <label>Password</label>
+    <input type="password" placeholder="password" title="Password (UpperCase, LowerCase, Number/SpecialChar and min 8 Chars)" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" name="password" autofocus required>
+    </div>
+     <div class="field">
+        <label>First Name</label>
+        <input type="text" name="firstName" placeholder="First Name">
+    </div>
+    <div class="field">
+        <label>Last Name</label>
+        <input type="text" name="lastName" placeholder="Last Name">
+    </div>
+    <div class="field">
+        <label>Profile Pic</label>
+        <input type="text" name="avatar" placeholder="Profile Pic">
+    </div>
+    <div class="field">
+        <label>Administrator</label>
+        <input type="password" name="adminCode" placeholder="Admin code">
+    </div>
+    <button class="ui big green inverted button">Sign Up</button>
+</form>
+</div>
+<% include ./partials/footer %>

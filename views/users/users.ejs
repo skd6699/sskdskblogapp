@@ -1,0 +1,20 @@
+<% include ../partials/header %>
+<div class="ui main text container segment" style="width:40%">
+    <div class="ui huge header">
+         <%= user.firstName + " " + user.lastName %>
+    </div>
+    <div><img class="ui rounded image" src="<%= user.avatar %>" alt="user profile image">
+    	<div class="caption">Email me at: <a href="mailto:<%= user.email %>"><%= user.email %></a></div>
+		</div>
+		<div style="margin-top:16px;">
+		<h3><%= user.username %>'s blogs:</h3>
+		<ol>
+		<% blogs.forEach(function(blog) { %>
+			<li><a href="/blogs/<%= blog.id %>"><%= blog.title %></a></li>
+		<% }); %>
+		</ol>
+	</div>
+       
+</div>
+
+<% include ../partials/footer %>
