@@ -15,8 +15,8 @@ var    express = require("express"),
        var app = express();
 //APP CONFIG       
 
- mongoose.connect('mongodb://localhost:27017/blog_app', { useNewUrlParser : true});
-//mongoose.connect(process.env.DATABASEURL,{ useNewUrlParser : true });
+ //mongoose.connect('mongodb://localhost:27017/blog_app', { useNewUrlParser : true});
+mongoose.connect(process.env.DATABASEURL,{ useNewUrlParser : true });
 app.set("view engine","ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -425,13 +425,13 @@ app.post('/reset/:token', function(req, res) {
       var smtpTransport = nodemailer.createTransport({
         service: 'Gmail', 
         auth: {
-          user: 'learntocodeinfo@gmail.com',
+          user: 'ksai0509@gmail.com',
           pass: process.env.GMAILPW
         }
       });
       var mailOptions = {
         to: user.email,
-        from: 'learntocodeinfo@mail.com',
+        from: 'ksai0509@gmail.com',
         subject: 'Your password has been changed',
         text: 'Hello,\n\n' +
           'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
