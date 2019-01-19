@@ -1,7 +1,7 @@
 <% include ./partials/header %>
 
 <div class="ui container main text">
-    <div class="ui huge header">SSK Blog App</div>
+    <h4 class="ui  header"></h4>
     <div class="ui top attached segment">
         <div class="ui divided items">
             <% blogs.forEach(function(blog){ %>
@@ -15,6 +15,7 @@
                         <div class="meta">
                             <span><%= blog.created.toDateString() %> </span>    
                         </div>
+                         <div class="meta" ><span><i class="eye icon"></i> Hits : <%=hits[blog.title]%></span></div>
                         <div class="description">
                             <p><%= blog.body.substring(0,100) %>....</p>
                         </div>

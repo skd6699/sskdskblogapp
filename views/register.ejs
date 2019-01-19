@@ -2,14 +2,14 @@
 
 <div class="ui main text container segment" style="width:25%">
 <div class="ui huge header">Register</div>
-<form action="/register" method="POST" class="ui form">
+<form action="/register" method="POST" class="ui form" enctype="multipart/form-data">
     <div class="field">
         <label>Email</label>
         <input type="email" placeholder="example@example.com"  name="email" autofocus required>
     </div>
     <div class="field">
         <label>Username</label>
-        <input type="text" placeholder="username" title="Username with 2-20 chars starting with lowercase/uppercase special character:-_. allowed" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" name="username" autofocus required>
+        <input type="text" placeholder="username" title="Username with 4-20 chars starting with lowercase/uppercase special character:-_. allowed" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{3,20}$" name="username" autofocus required>
     </div>
     <div class="field">
         <label>Password</label>
@@ -17,15 +17,19 @@
     </div>
      <div class="field">
         <label>First Name</label>
-        <input type="text" name="firstName" placeholder="First Name">
+        <input type="text" name="firstName" placeholder="First Name" required>
     </div>
     <div class="field">
         <label>Last Name</label>
-        <input type="text" name="lastName" placeholder="Last Name">
+        <input type="text" name="lastName" placeholder="Last Name" required>
     </div>
     <div class="field">
         <label>Profile Pic</label>
-        <input type="text" name="avatar" placeholder="Profile Pic">
+        <input type="file" name="avatar" id="avatar"  accept="image/*" required>
+    </div>
+    <div class="field">
+        <label>About(Optional)</label>
+        <textarea name="about" autofocus></textarea>
     </div>
     <div class="field">
         <label>Administrator</label>

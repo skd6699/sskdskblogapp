@@ -7,6 +7,9 @@ i.icon{
 i.search{
   font-size: 1.3em;  
 }
+i.eye{
+  font-size: 1.2em;  
+}
 .dskindex{
     margin-top: 100px;
 }
@@ -38,3 +41,18 @@ strong{
     padding: 2px;
 }
 
+#toe{
+    margin-top: 8px;
+}
+#usblogs{
+    margin-top: 12px;
+}
+.pp{
+       overflow: hidden;
+}
+#pp1{
+       overflow: hidden;
+}
+#comment{
+       overflow: hidden;
+}

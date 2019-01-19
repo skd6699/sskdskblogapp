@@ -6,7 +6,8 @@
           <img class="ui centered rounded image" src="<%= blog.image %>">
          </div>
          <div class="content">
-            <span>Published On - <strong><%= blog.created.toDateString() %></strong> </span>
+            <span>Published On - <strong><%= blog.created.toDateString() %></strong></span><br>
+         <i class="eye icon"></i><strong>Views</strong> : <strong> <%= hits %> </strong>
          </div>
          <div class="description">
              <p><%- blog.body %></p>
@@ -24,8 +25,9 @@
         <div>
                 <a class="ui violet inverted big button" href="/blogs/<%= blog._id%>/comments/new">Add new comment</a>
         </div>
+        <div class="ui black inverted segment comments">
           <% blog.comments.forEach(function(comment){ %>
-                               <div class="ui black inverted segment comments"><strong><%= comment.author.username %></strong><br>~  <span class="comment"><%= comment.text %></span>
+                              <div class="ui segment" id="comment"> <strong><%= comment.author.username %></strong><br>~  <span class="comment"><%= comment.text %></span>
                                <div class="caption"><%= moment(comment.createdAt).fromNow() %></div>
          <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
                                <form action="/blogs/<%= blog._id %>/comments/<%=comment._id%>?_method=DELETE" method="POST" class="delete-form">
@@ -34,7 +36,7 @@
                             <a class="ui inverted brown tiny button right floated" href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit">edit</a>
                             <% } %>
                             </div>
-                                         <% })%>
+                                         <% })%></div>
     </div>
 </div>
 

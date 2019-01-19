@@ -5,6 +5,7 @@ var UserSchema = new mongoose.Schema({
        password: String,
        avatar: String,
     firstName: String,
+    about:String,
 lastName: String,
         isAdmin: {type: Boolean, default: false},
        email: {type: String, unique: true, required: true},

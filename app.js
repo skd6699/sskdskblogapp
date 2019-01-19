@@ -11,12 +11,37 @@ var    express = require("express"),
        async = require("async"),
        crypto = require("crypto"),
        User = require("./models/user");
-       
-       var app = express();
+       var multer = require('multer');
+var storage = multer.diskStorage({
+  filename: function(req, file, callback) {
+    callback(null, Date.now() + file.originalname);
+  }
+});
+var imageFilter = function (req, file, cb) {
+    // accept image files only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+};
+var upload = multer({ storage: storage, fileFilter: imageFilter})
+
+var cloudinary = require('cloudinary');
+cloudinary.config({ 
+  cloud_name: 'dsk6699', 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+var userCount = 0;
+var hitCount=[];
+var views = 0;
+var v = 0;
+var app = express();
 //APP CONFIG       
 
- //mongoose.connect('mongodb://localhost:27017/blog_app', { useNewUrlParser : true});
-mongoose.connect(process.env.DATABASEURL,{ useNewUrlParser : true });
+mongoose.connect('mongodb://localhost:27017/blog_app', { useNewUrlParser : true});
+//mongoose.connect(process.env.DATABASEURL,{ useNewUrlParser : true });
 app.set("view engine","ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -30,6 +55,7 @@ var blogSchema = new mongoose.Schema({
     title: String,
     image: String,
     body: String,
+    hits:{type:Number,default:0},
     author:{
       id:{
           type:mongoose.Schema.Types.ObjectId,
@@ -45,10 +71,6 @@ var blogSchema = new mongoose.Schema({
         ],
     created: {type: Date, default: Date.now}
 });
-var countSchema = new mongoose.Schema({
-       hits:  {type:Number,default:0}
-});
-var Count = mongoose.model("Count",countSchema);
 var Blog = mongoose.model("Blog",blogSchema);
 //Count.create();
 //Passport config
@@ -90,7 +112,7 @@ app.get("/blogs",function(req,res){
         {   if(blogs.length < 1) {
                   noMatch = "No blogs match that query, please try again.";
                 }
-            res.render("index",{blogs:blogs, noMatch: noMatch});
+            res.render("index",{blogs:blogs, noMatch: noMatch,hits:hitCount});
         }
     });  
     }
@@ -103,7 +125,7 @@ app.get("/blogs",function(req,res){
         else
         {
                
-            res.render("index",{blogs:blogs,noMatch: noMatch});
+            res.render("index",{blogs:blogs,noMatch: noMatch,hits:hitCount});
                }
     });
 }
@@ -114,24 +136,27 @@ app.get("/blogs/new",isLoggedIn,function(req, res) {
    res.render("new"); 
 });
 //CREATE ROUTE
-app.post("/blogs",isLoggedIn,function(req,res){
-    //create blog
-    req.body.blog.body = req.sanitize(req.body.blog.body)
-    Blog.create(req.body.blog, function(err,newBlog){
-        if(err)
-        {
-            res.render("new");
-        }
-        else
-        {   
-                newBlog.author.id = req.user._id;
-                newBlog.author.username = req.user.username;
-                newBlog.save();
-            res.redirect("/blogs");
-        }
-    });
-    //then ,redirect
+app.post("/blogs",isLoggedIn,upload.single('image'),function(req,res){
+cloudinary.uploader.upload(req.file.path, function(result) {
+  // add cloudinary url for the image to the campground object under image property
+  req.body.blog.image = result.secure_url;
+  // add author to campground
+  req.body.blog.author = {
+    id: req.user._id,
+    username: req.user.username
+  }
+  Blog.create(req.body.blog, function(err, blog) {
+    if (err) {
+      req.flash('error', err.message);
+      return res.redirect('back');
+    }else{
+           hitCount[blog.title]=0;
+    res.redirect('/blogs/' + blog.id);
+           
+    }
     
+  });
+});
 });
 
 //SHOW
@@ -143,8 +168,9 @@ app.get("/blogs/:id",function(req, res) {
            console.log(err);
        }
        else
-       {
-           res.render("show",{blog: foundBlog});
+       {  
+           v = hitCount[foundBlog.title]++ ;
+           res.render("show",{blog: foundBlog,hits: v});
        }
    }); 
 });
@@ -167,7 +193,7 @@ app.get("/blogs/:id/edit",checkCampgroundOwnership, function(req, res) {
 
 //UPDATE ROUTE
 app.put("/blogs/:id",checkCampgroundOwnership,function(req,res){
-    req.body.blog.body = req.sanitize(req.body.blog.body)
+    req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.findByIdAndUpdate(req.params.id,req.body.blog, function(err,updatedBlog){
         if(err)
         {
@@ -179,6 +205,7 @@ app.put("/blogs/:id",checkCampgroundOwnership,function(req,res){
         }
     });
 });
+
 //DELETE ROUTE
 app.delete("/blogs/:id",checkCampgroundOwnership,function(req,res){
    Blog.findByIdAndRemove(req.params.id,function(err){
@@ -295,15 +322,18 @@ app.get("/register",function(req, res) {
     res.render("register");
 });
 //handle sign up
-app.post("/register",function(req,res){
-    var newUser = new User({username: req.body.username,email: req.body.email,avatar: req.body.avatar,lastName: req.body.lastName,firstName: req.body.firstName});
+app.post("/register",upload.single('avatar'),function(req,res){
+    cloudinary.v2.uploader.upload(req.file.path, function(err,result) {
+        if(err){console.log(err);}
+  // add cloudinary url for the image to the campground object under image property
+  req.body.avatar = result.secure_url;
+     var newUser = new User({username: req.body.username,avatar:req.body.avatar,email: req.body.email,lastName: req.body.lastName,firstName: req.body.firstName,about: req.body.about});
     if(req.body.adminCode === 'himalayan21') {
       newUser.isAdmin = true;
 }
     User.register(newUser,req.body.password,function(err,user){
         if(err){
-            console.log(err);
-             req.flash("error","A user with the given username is already registered");
+             req.flash("error","Username or Email already used");
             return res.render("register");
         }
         passport.authenticate("local")(req,res,function(){
@@ -311,16 +341,23 @@ app.post("/register",function(req,res){
             res.redirect("/blogs");
         });
     });
+
 });
+});
+
 //show login
+var u;
 app.get("/login",function(req, res) {
+    
    res.render("login"); 
+   
 });
 app.post("/login", passport.authenticate("local",{
     successRedirect: "/blogs",
-    failureRedirect: "/login"
+    failureRedirect: "/login",
+    failureFlash: 'Invalid username or password.',
+     successFlash: 'Welcome!'
 }),function(req, res) {
-    
 });
 //logout
 app.get("/logout",function(req, res) {
@@ -525,7 +562,6 @@ function checkCommentOwnership(req,res,next)
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
-
 
 app.listen(process.env.PORT,process.env.IP, function(){
     console.log("Blog app is running");

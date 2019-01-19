@@ -4,9 +4,10 @@
 <form action="/forgot" method="POST" class="ui form">
     <div class="field">
         <label>Email</label>
-        <input type="email" placeholder="email" name="email"  autofocus>
+        <input type="email" placeholder="email" name="email"  autofocus required>
     </div>
     <input type="submit" value="Reset Password" class="ui big green inverted button">
+    <a href="/blogs" class="ui big brown inverted button">Go Back</a>
 </form>
 </div>
 <% include ./partials/footer %>

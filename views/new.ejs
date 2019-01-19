@@ -2,21 +2,21 @@
 
 <div class="ui main text container segment">
     <div class="ui huge header">New Blog</div>
-<form action="/blogs" method="POST" class="ui form">
+<form action="/blogs" method="POST" class="ui form" enctype="multipart/form-data">
     <div class="field">
         <label>Title</label>
         <input type="text" name="blog[title]" placeholder="title" autofocus>
     </div>
     <div class="field">
         <label>Image</label>
-        <input type="text" name="blog[image]" placeholder="image" autofocus>
+        <input type="file" id="image" name="image" accept="image/*" autofocus required>
     </div>
     <div class="field">
         <label>Blog Content</label>
-        <textarea name="blog[body]" autofocus></textarea>
+        <textarea name="blog[body]" minlength="150" autofocus></textarea>
         <!--<input type="text" name="blog[body]" placeholder="blog post goes here">-->
     </div>
-    <input type="submit" class="ui big green inverted button">
+    <input type="submit" class="ui big green inverted button" value="Submit">
     <a href="/blogs" class="ui big brown inverted button">Go Back</a>
 </form>
 </div>
