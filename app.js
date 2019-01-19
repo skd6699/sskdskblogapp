@@ -333,8 +333,8 @@ app.post("/register",upload.single('avatar'),function(req,res){
 }
     User.register(newUser,req.body.password,function(err,user){
         if(err){
-             req.flash("error","Username or Email already used");
-            return res.render("register");
+            console.log(err);
+            return res.render("register", {error: err.message});
         }
         passport.authenticate("local")(req,res,function(){
             req.flash("success","Welcome " + user.username);
@@ -399,13 +399,13 @@ app.post('/forgot', function(req, res, next) {
       var smtpTransport = nodemailer.createTransport({
         service: 'Gmail', 
         auth: {
-          user: 'ksai0509@gmail.com',
+          user: 'sskdskblog@gmail.com',
           pass:  process.env.GMAILPW
         }
       });
       var mailOptions = {
         to: user.email,
-        from: 'sharathkumar007008@gmail.com',
+        from: 'sskdskblog@gmail.com',
         subject: 'Blog Site Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -462,13 +462,13 @@ app.post('/reset/:token', function(req, res) {
       var smtpTransport = nodemailer.createTransport({
         service: 'Gmail', 
         auth: {
-          user: 'ksai0509@gmail.com',
+          user: 'sskdskblog@gmail.com',
           pass: process.env.GMAILPW
         }
       });
       var mailOptions = {
         to: user.email,
-        from: 'ksai0509@gmail.com',
+        from: 'sskdskblog@gmail.com',
         subject: 'Your password has been changed',
         text: 'Hello,\n\n' +
           'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
