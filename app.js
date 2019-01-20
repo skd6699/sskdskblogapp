@@ -33,10 +33,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-var userCount = 0;
-var hitCount=[];
-var views = 0;
-var v = 0;
 var app = express();
 //APP CONFIG       
 
@@ -112,7 +108,7 @@ app.get("/blogs",function(req,res){
         {   if(blogs.length < 1) {
                   noMatch = "No blogs match that query, please try again.";
                 }
-            res.render("index",{blogs:blogs, noMatch: noMatch,hits:hitCount});
+            res.render("index",{blogs:blogs, noMatch: noMatch});
         }
     });  
     }
@@ -125,7 +121,7 @@ app.get("/blogs",function(req,res){
         else
         {
                
-            res.render("index",{blogs:blogs,noMatch: noMatch,hits:hitCount});
+            res.render("index",{blogs:blogs,noMatch: noMatch});
                }
     });
 }
@@ -150,7 +146,6 @@ cloudinary.uploader.upload(req.file.path, function(result) {
       req.flash('error', err.message);
       return res.redirect('back');
     }else{
-           hitCount[blog.title]=0;
     res.redirect('/blogs/' + blog.id);
            
     }
@@ -161,7 +156,7 @@ cloudinary.uploader.upload(req.file.path, function(result) {
 
 //SHOW
 app.get("/blogs/:id",function(req, res) {
-   Blog.findById(req.params.id).populate("comments").exec(function(err, foundBlog){
+   Blog.findByIdAndUpdate(req.params.id,{ $inc: { views: 1 } }, {new: true }).populate("comments").exec(function(err, foundBlog){
        if(err || !foundBlog){
            req.flash("error","Blog not found!");
            res.redirect("/blogs");
@@ -169,8 +164,7 @@ app.get("/blogs/:id",function(req, res) {
        }
        else
        {  
-           v = hitCount[foundBlog.title]++ ;
-           res.render("show",{blog: foundBlog,hits: v});
+           res.render("show",{blog: foundBlog});
        }
    }); 
 });
