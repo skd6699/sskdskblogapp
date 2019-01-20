@@ -156,14 +156,14 @@ cloudinary.uploader.upload(req.file.path, function(result) {
 
 //SHOW
 app.get("/blogs/:id",function(req, res) {
-   Blog.findByIdAndUpdate(req.params.id,{ $inc: { views: 1 } }, {new: true }).populate("comments").exec(function(err, foundBlog){
+   Blog.findByIdAndUpdate(req.params.id,{ $inc: { hits: 1 } }, {new: true }).populate("comments").exec(function(err, foundBlog){
        if(err || !foundBlog){
            req.flash("error","Blog not found!");
            res.redirect("/blogs");
            console.log(err);
        }
        else
-       {  
+       {  console.log(foundBlog.hits);
            res.render("show",{blog: foundBlog});
        }
    }); 
