@@ -332,6 +332,22 @@ app.post("/register",upload.single('avatar'),function(req,res){
             return res.render("register", {error: err.message});
         }
         passport.authenticate("local")(req,res,function(){
+             if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+    return res.json({"responseCode" : 1,"responseDesc" : "Please select captcha"});
+  }
+  // Put your secret key here.
+  var secretKey = "6LdKrY0UAAAAAL8DeK8IiBRxxSiHQj0nQBYz2Wk7";
+  // req.connection.remoteAddress will provide IP address of connected user.
+  var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+  // Hitting GET request to the URL, Google will respond with success or error scenario.
+  request(verificationUrl,function(error,response,body) {
+    body = JSON.parse(body);
+    // Success will be true or false depending upon captcha validation.
+    if(body.success !== undefined && !body.success) {
+      return res.json({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
+    }
+    res.json({"responseCode" : 0,"responseDesc" : "Sucess"});
+  });
             req.flash("success","Welcome " + user.username);
             res.redirect("/blogs");
         });
