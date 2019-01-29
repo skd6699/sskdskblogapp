@@ -357,7 +357,7 @@ app.post("/login", passport.authenticate("local",{
     return res.json({"responseCode" : 1,"responseDesc" : "Please select captcha"});
   }
   // Put your secret key here.
-  var secretKey = "6LcPro0UAAAAABwFZf6hlr16OOM3CtqYFsDaU8G_";
+  var secretKey = "6LdKrY0UAAAAAL8DeK8IiBRxxSiHQj0nQBYz2Wk7";
   // req.connection.remoteAddress will provide IP address of connected user.
   var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
   // Hitting GET request to the URL, Google will respond with success or error scenario.
