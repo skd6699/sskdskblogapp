@@ -68,3 +68,6 @@ strong{
     z-index: -999999;
     opacity: 0;
 }
+.cap{
+    text-transform: capitalize;
+}
