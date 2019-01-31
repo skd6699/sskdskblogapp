@@ -5,7 +5,7 @@
 <form action="/blogs" method="POST" class="ui form" enctype="multipart/form-data">
     <div class="field">
         <label>Title</label>
-        <input type="text" name="blog[title]" placeholder="title" autofocus>
+        <input type="text" name="blog[title]" placeholder="title" autofocus required>
     </div>
     <div class="field">
         <label>Image</label>
@@ -13,7 +13,7 @@
     </div>
     <div class="field">
         <label>Blog Content</label>
-        <textarea name="blog[body]" minlength="150" autofocus></textarea>
+        <textarea name="blog[body]" minlength="150" autofocus required title="Minimum of 150 Characters Required. Please Fill Out."></textarea>
         <!--<input type="text" name="blog[body]" placeholder="blog post goes here">-->
     </div>
     <input type="submit" class="ui big green inverted button" value="Submit">

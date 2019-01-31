@@ -95,7 +95,10 @@ app.use(function(req,res,next){
 app.get("/",function(req, res) {
     res.redirect("/blogs");
 });
-app.get("/blogs",function(req,res){
+app.get("/blogs",function(req, res) {
+    res.redirect("/blogs/recent");
+});
+app.get("/blogs/recent",function(req,res){
     var noMatch = null;
     if(req.query.search)
     {
@@ -111,7 +114,7 @@ app.get("/blogs",function(req,res){
                 }
             res.render("index",{blogs:blogs, noMatch: noMatch});
         }
-    });  
+    }).sort({ created: 'desc' });  
     }
     else{
     Blog.find({},function(err,blogs){
@@ -124,7 +127,39 @@ app.get("/blogs",function(req,res){
                
             res.render("index",{blogs:blogs,noMatch: noMatch});
                }
-    });
+    }).sort({ created: 'desc' });
+}
+});
+app.get("/blogs/popular",function(req,res){
+    var noMatch = null;
+    if(req.query.search)
+    {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+      Blog.find({title: regex},function(err,blogs){
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+        {   if(blogs.length < 1) {
+                  noMatch = "No blogs match that query, please try again.";
+                }
+            res.render("popular",{blogs:blogs, noMatch: noMatch});
+        }
+    }).sort({ hits : '-1' });  
+    }
+    else{
+    Blog.find({},function(err,blogs){
+        if(err)
+        {
+            console.log("Error");
+        }
+        else
+        {
+               
+            res.render("popular",{blogs:blogs,noMatch: noMatch});
+               }
+    }).sort({ hits : '-1' });
 }
 });
 
@@ -160,7 +195,7 @@ app.get("/blogs/:id",function(req, res) {
    Blog.findByIdAndUpdate(req.params.id,{ $inc: { hits: 1 } }, {new: true }).populate("comments").exec(function(err, foundBlog){
        if(err || !foundBlog){
            req.flash("error","Blog not found!");
-           res.redirect("/blogs");
+           res.redirect("/blogs/recent");
            console.log(err);
        }
        else
@@ -174,7 +209,7 @@ app.get("/blogs/:id/edit",checkCampgroundOwnership, function(req, res) {
     Blog.findById(req.params.id, function(err, foundBlog){
         if(err || !foundBlog)
         {req.flash("error","Blog not found!");
-            res.redirect("/blogs");
+            res.redirect("/blogs/recent");
             
         }
         else
@@ -211,7 +246,7 @@ app.delete("/blogs/:id",checkCampgroundOwnership,function(req,res){
        else
        {
            req.flash("success","Blog deleted");
-           res.redirect("/blogs");
+           res.redirect("/blogs/recent");
        }
    }); 
 });
@@ -349,7 +384,7 @@ app.post("/register",upload.single('avatar'),function(req,res){
     res.json({"responseCode" : 0,"responseDesc" : "Sucess"});
   });
             req.flash("success","Welcome " + user.username);
-            res.redirect("/blogs");
+            res.redirect("/blogs/recent");
         });
     });
 
@@ -364,7 +399,7 @@ app.get("/login",function(req, res) {
    
 });
 app.post("/login", passport.authenticate("local",{
-    successRedirect: "/blogs",
+    successRedirect: "/blogs/recent",
     failureRedirect: "/login",
     failureFlash: 'Invalid username or password.',
      successFlash: 'Welcome!'
@@ -390,7 +425,7 @@ app.post("/login", passport.authenticate("local",{
 app.get("/logout",function(req, res) {
    req.logout();
    req.flash("success","logged you out!");
-   res.redirect("/blogs");
+   res.redirect("/blogs/recent");
 });
 
 
