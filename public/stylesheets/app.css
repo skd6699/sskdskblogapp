@@ -71,3 +71,12 @@ strong{
 .cap{
     text-transform: capitalize;
 }
+#content {
+		min-height: 100px;
+		}
+.ui.grid{
+		padding: 0 !important;
+		}
+.pushable.segment{
+		margin: 0 !important;
+		}

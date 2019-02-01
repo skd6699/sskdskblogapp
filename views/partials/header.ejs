@@ -8,9 +8,17 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css" type="text/css" rel="stylesheet">
         <link href="/stylesheets/app.css" type="text/css" rel="stylesheet">
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     </head>
     <body>
+        <div class="ui grid">
+	
+	<div class="computer only row">
+		<div class="column">
         <div class="ui fixed inverted menu">
             <div class="ui container ">
                 <div class="header item"><i class="book icon"></i>SSK-DSK Blogapp</div>
@@ -30,7 +38,7 @@
                 <a href="/register" class="item">Register</a>
                   
                 <%    } else { %>
-                    <a class="item" href="/users/<%= currentUser.id %>"%>"><%= currentUser.username %></a>
+                    <a class="blue active item" href="/users/<%= currentUser.id %>"%>"><%= currentUser.username %></a>
                                     <a href="/logout" class="item">Logout</a>
                                   
                 <%    }  %>
@@ -38,6 +46,39 @@
                 
             </div>
         </div>
+        		</div>
+	</div>
+		 <div class="tablet mobile only row">
+		<div class="column">
+			<div class="ui menu">
+				<a id="mobile_item" class="item"><i class="bars icon"></i><div class="header item"><i class="book icon"></i>SSK-DSK Blogapp</div></a>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="ui pushable segment">
+		<div class="ui sidebar inverted vertical menu">
+			<a href="/" class="item">Home</a>
+			<a href="/blogs/new" class="item">New Post</a>
+			                    <form action="/blogs/popular" method="GET" class="item">
+                                      <div class="ui action input">
+        <input type="text" name="search" placeholder="Search..." >
+        <button class="ui button"><i class="search icon"></i></button>
+       </div>
+       </form>
+			    <%    if(!currentUser){ %>
+                <a href="/login" class="item">Login</a>
+                <a href="/forgot" class="item">Forgot Password?</a>
+                <a href="/register" class="item">Register</a>
+                  
+                <%    } else { %>
+                    <a class="blue active item" href="/users/<%= currentUser.id %>"%>"><%= currentUser.username %></a>
+                                    <a href="/logout" class="item">Logout</a>
+                                  
+                <%    }  %>
+		</div>
+		<div class="pusher">
+				<div id="content" class="ui segment">
         <div class="ui container main" >
            <% if(error && error.length>0){ %>
            <div class="ui red message">
