@@ -1,17 +1,14 @@
 .container.main {
-    margin-top: 8.0em; 
+    margin-top: 3.2em; 
 }
 i.icon{
   font-size: 2em;  
 }
 i.search{
-  font-size: 1.3em;  
+  font-size: 1.2em;  
 }
 i.eye{
   font-size: 1.2em;  
-}
-.dskindex{
-    margin-top: 100px;
 }
 #delete{
     display:inline;
@@ -19,8 +16,8 @@ i.eye{
 p{
     line-height: 1.8;
      padding: 5px;
-     word-spacing: 2px;
-     font-size: 16px;
+     word-spacing: 4px;
+     font-size: 21px;
      text-align: justify;
      
 }
@@ -28,7 +25,7 @@ p{
     padding: 8px;
     text-align: justify;
      word-spacing: 4px;
-     font-size: 17px;
+     font-size: 21px;
 }
 .comments{
     overflow: hidden;
@@ -67,13 +64,14 @@ strong{
     height: 76px !important;
     z-index: -999999;
     opacity: 0;
+    
 }
 .cap{
     text-transform: capitalize;
 }
-#content {
-		min-height: 100px;
-		}
+/*#content {*/
+/*		min-height: 100px;*/
+/*		}*/
 .ui.grid{
 		padding: 0 !important;
 		}
