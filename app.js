@@ -383,7 +383,7 @@ app.post("/register",upload.single('avatar'),function(req,res){
     }
     res.json({"responseCode" : 0,"responseDesc" : "Sucess"});
   });
-            req.flash("success","Welcome " + user.username);
+            req.flash("success","Welcome");
             res.redirect("/blogs/recent");
         });
     });
