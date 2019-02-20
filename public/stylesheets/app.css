@@ -19,7 +19,7 @@ p{
      word-spacing: 4px;
      font-size: 21px;
      text-align: justify;
-     
+     overflow: hidden;
 }
 .description{
     padding: 8px;
