@@ -366,7 +366,14 @@ app.post("/register",upload.single('avatar'),function(req,res){
             console.log(err);
             return res.render("register", {error: err.message});
         }
-        if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+        passport.authenticate("local")(req,res,function(){
+            req.flash("success","Welcome " + user.username);
+            res.redirect("/blogs/recent");
+        });
+    });
+
+});
+         if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
     return res.json({"responseCode" : 1,"responseDesc" : "Please select captcha"});
   }
   // Put your secret key here.
@@ -382,13 +389,6 @@ app.post("/register",upload.single('avatar'),function(req,res){
     }
     res.json({"responseCode" : 0,"responseDesc" : "Sucess"});
   });
-        passport.authenticate("local")(req,res,function(){
-            req.flash("success","Welcome " + user.username);
-            res.redirect("/blogs/recent");
-        });
-    });
-
-});
 });
 
 //show login
