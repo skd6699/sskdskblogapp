@@ -19,14 +19,14 @@ p{
      word-spacing: 4px;
      font-size: 21px;
      text-align: justify;
-     
+     border:2px solid blue;
 }
 .description{
     padding: 8px;
     text-align: justify;
      word-spacing: 4px;
      font-size: 21px;
-     overflow: hidden;
+     overflow-wrap: break-word;
 }
 .comments{
     overflow: hidden;
