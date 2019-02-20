@@ -81,3 +81,6 @@ strong{
 .pushable.segment{
 		margin: 0 !important;
 		}
+		iframe{
+		    display: inline-block;
+		}
