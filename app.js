@@ -146,7 +146,7 @@ app.get("/blogs/popular",function(req,res){
                 }
             res.render("popular",{blogs:blogs, noMatch: noMatch});
         }
-    }).sort({ hits : '-1' });  
+    });  
     }
     else{
     Blog.find({},function(err,blogs){
@@ -366,8 +366,7 @@ app.post("/register",upload.single('avatar'),function(req,res){
             console.log(err);
             return res.render("register", {error: err.message});
         }
-        passport.authenticate("local")(req,res,function(){
-             if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+        if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
     return res.json({"responseCode" : 1,"responseDesc" : "Please select captcha"});
   }
   // Put your secret key here.
@@ -375,7 +374,7 @@ app.post("/register",upload.single('avatar'),function(req,res){
   // req.connection.remoteAddress will provide IP address of connected user.
   var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
   // Hitting GET request to the URL, Google will respond with success or error scenario.
-  req(verificationUrl,function(error,response,body) {
+  request(verificationUrl,function(error,response,body) {
     body = JSON.parse(body);
     // Success will be true or false depending upon captcha validation.
     if(body.success !== undefined && !body.success) {
@@ -383,7 +382,8 @@ app.post("/register",upload.single('avatar'),function(req,res){
     }
     res.json({"responseCode" : 0,"responseDesc" : "Sucess"});
   });
-            // req.flash("success","Welcome ");
+        passport.authenticate("local")(req,res,function(){
+            req.flash("success","Welcome " + user.username);
             res.redirect("/blogs/recent");
         });
     });
