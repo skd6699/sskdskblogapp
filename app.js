@@ -373,7 +373,9 @@ app.post("/register",upload.single('avatar'),function(req,res){
     });
 
 });
-         if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+         
+}),function(req,res){
+    if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
     return res.json({"responseCode" : 1,"responseDesc" : "Please select captcha"});
   }
   // Put your secret key here.
@@ -389,7 +391,7 @@ app.post("/register",upload.single('avatar'),function(req,res){
     }
     res.json({"responseCode" : 0,"responseDesc" : "Sucess"});
   });
-});
+}
 
 //show login
 var u;
