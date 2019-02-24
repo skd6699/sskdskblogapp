@@ -1,3 +1,6 @@
+body{
+    text-rendering: optimizeLegibility;
+}
 .container.main {
     margin-top: 3.2em; 
 }
@@ -84,3 +87,10 @@ strong{
 		iframe{
 		    display: inline-block;
 		}
+		body{
+    text-rendering: optimizeLegibility;
+}
+
+img{
+    image-rendering: pixelated
+}
