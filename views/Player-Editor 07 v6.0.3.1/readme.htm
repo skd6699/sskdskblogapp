@@ -1,0 +1,352 @@
+<html><head><title>Player Editor07 Readme</title><!-- CSS Stylesheet -->
+
+<style type="text/css">
+body
+{
+	background-color: #e1e1e2;
+	color: #000000;
+	font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+a:link
+{
+	color: #22229c;
+	text-decoration: underline;
+}
+a:visited
+{
+	color: #22229c;
+	text-decoration: underline;
+}
+a:hover, a:active
+{
+	color: #ff4400;
+	text-decoration:  overline underline;
+	position: relative; top: 1px; left: 1px;
+}
+.page
+{
+	background-color: #ffffff;
+	color: #000000;
+}
+td, th, p, li
+{
+	font: 10pt verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+.tborder
+{
+	background-color: #4EA700;
+	color: #000000;
+	border: 1px solid #2C5F00;
+}
+.thead
+{
+	background: #50AC01 repeat-x top left;
+	color: #ffffff;
+	font-style:normal; font-variant:normal; font-weight:bold; font-size:11px; font-family:tahoma, verdana, geneva, lucida, lucida grande, arial, helvetica, sans-serif
+}
+.thead a:link
+{
+	color: #ffffff;
+}
+.thead a:visited
+{
+	color: #ffffff;
+}
+.thead a:hover, .thead a:active
+{
+	color: #ffff00;
+}
+.alt1, .alt1Active
+{
+	background-color: #FFFFFF;
+	color: #000000;
+}
+td.thead, div.thead { padding: 4px; }
+-->
+</style><!-- / CSS Stylesheet --></head><body bgcolor="#ffffff"><center><img src="readme_files/pclogo.jpg"></center><br>
+
+	<div align="center">
+		<div class="page" style="width: 100%; text-align: left;">
+			<div style="padding: 0px 0px 6px;">
+			<table class="tborder" align="center" border="0" cellpadding="6" cellspacing="0" width="100%">
+				<tbody><tr>
+					<td class="thead" style="font-size: medium;">		
+						Player Editor07 - Version 6.0.3.1 - 
+                        02-05-2012</td>
+				</tr>
+				<tr valign="top">
+					<td class="alt1">
+						<div><ol>
+							<li><a href="#1">Introduction</a></li>
+	  						<li><a href="#2">Installation Information</a></li>
+	  						<li><a href="#3">Using the Program</a></li>
+	  						<li><a href="#4">Known Issues</a></li>
+							<li><a href="#4">Change Log</a></li>
+	  						<li><a href="#5">Credits</a></li>
+	  						<li><a href="#6">Legal Stuff</a></li>					
+						</ol></div>
+					</td>
+				</tr>
+			</tbody></table>
+			</div>
+		</div>
+	</div>
+
+		<div align="center">
+		<div class="page" style="width: 100%; text-align: left;">
+			<div style="padding: 0px 0px 6px;">
+			<table class="tborder" align="center" border="0" cellpadding="6" cellspacing="0" width="100%">
+				<tbody><tr>
+					<td class="thead" style="font-weight: bold;">		
+						<a name="1">Introduction</a>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td class="alt1">
+						<div>Welcome to the Cricket07 Player Editor. This editor will allow you to edit everything about a players appearance,
+abilities and stats. Additionally you can change squads and import and
+export teams and player. Player Editor07 also contains a nationalities
+filter to make editing even easier. It's the complete .ros editor.</div>
+					</td>
+				</tr>
+			</tbody></table>
+			</div>
+		</div>
+	</div>
+	
+	<div align="center">
+		<div class="page" style="width: 100%; text-align: left;">
+			<div style="padding: 0px 0px 6px;">
+			<table class="tborder" align="center" border="0" cellpadding="6" cellspacing="0" width="100%">
+				<tbody><tr>
+					<td class="thead" style="font-weight: bold;">		
+						<a name="2">Installation Information</a>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td class="alt1">
+						<div>To run the program you will need the .net 2.0 framework. Get it <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5&amp;DisplayLang=en" target="_blank">here</a> <br>Place the bats.xml file, ImpBIG.exe fle and the FreeImage.dll file in the <b>same</b> directory as the exe. Run the exe. <br> When running the editor for the first time it will prompt you for the Cricket07 root directory (where you installed the game) and the path of ImpBIG. These can be edited later by changing the xml.<br>
+See this thread for help: <a href="http://www.planetcricket.net/forums/showthread.php?t=17161" target="_blank">http://www.planetcricket.net/forums/showthread.php?t=28167</a>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+			</div>
+		</div>
+	</div>
+	
+		<div align="center">
+		<div class="page" style="width: 100%; text-align: left;">
+			<div style="padding: 0px 0px 6px;">
+			<table class="tborder" align="center" border="0" cellpadding="6" cellspacing="0" width="100%">
+				<tbody><tr>
+					<td class="thead" style="font-weight: bold;">		
+						<a name="3">Using the Program</a>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td class="alt1">
+						<div><b>Start up</b><ul>
+<li>The editor will default to the personal information tab</li>
+<li>The tool bar at the top contains buttons to open a new file, save file, change settings, view the readme, check for updates and view the about information</li>
+<li>The combobox on the left contains the name of the player currently being edited</li>
+<li>The combobox on the right sets the nationality filter for the editor. The derfault is for it to show all players with a nationality set. There is also a show all players option which will show uncreated players and players set with nationality to none</li>
+<li>Settings that can be changed are to switch between overs and balls and to enable/disable previews (to speed the editor up)</li></ul>
+<b>Faces</b><ul>
+<li>There are 75 generic faces in C07 and around 60 unique ones. This can be expanded by patchmakers to provide for more unique ones. Every player has either a unique or generic face assigned to them</li>
+<li>To find out a players face filename and whether he has a unique face or not click on the 'Face' tab</li>
+<li>If a players face ID is the same as his player ID then he has a unique face. otherwise he has a generic one</li>
+<li>The editor can be used to set generic faces for created players and unique faces for players who don't have them</li>
+</ul>
+<b>Assigning generic faces</b>
+						<ul>
+							<li>select the player</li>
+							<li>check the 'Set Generic Face' box in the face tab</li>
+							<li>Select 'White', 'Asian', or 'Dark' skin on the box that appears</li>
+							<li>Click the save button</li>
+						<b>
+						</ul>
+                            <p>
+                                &nbsp;</p>
+                            Assigning unique faces</b>
+						    <ul>
+							    <li>Download A Face File And Extract it </li>
+                                <li>*If You Want Sunscream too, Then Download A Sunscream Face File And Extract it</li>
+                                <li>In Player-Editor, Select Face And Appearance select the player check the &#39;Set 
+                                    Unique Face&#39; box </li>
+                                <li>Select &#39;White&#39;, &#39;Asian&#39;, or &#39;Dark&#39; skin on the box that appears Check Sunscream 
+                                    if you want it too. </li>
+                                <li>Click on the Shortcut Assign You will be prompted to locate the normal face you 
+                                    downloaded </li>
+                                <li>You will be prompted to locate the sunscream face you downloaded</li>
+                                <li>The editor will write the correct code to the XML file </li>
+                                <li>You will see a may face appear but this is actually a unique face.</li>
+						<b>
+						</ul>
+                            <p>
+                                &nbsp;</p>
+                            Changing stats</b>
+						    <ul>
+							    <li>Open the stats tab</li>
+                                <li>Change test/odi/od or FC one at a time and hit save</li>
+                                <li>Not out high scores should have an "<b> * </b>"' after them</li>
+                                <li>In BBI wickets comes before runs</li>
+                                <li>Average, SR and Economy are read only as they are calculated from the other stats</li>
+						</ul>
+						<b>Bat and appearance</b>
+						<ul>
+							<li>The list of bats can be edited by changing the xml file</li>
+							<li>The fsh filename that appears is the file containing that bat</li>
+						</ul>
+<b>Personal/Abilites/Skills</b>
+						<ul>
+							<li>Should all be editable by changing and clicking save</li>
+							<li>Use the slider to set the value in Abilities</li>
+						</ul>
+<b>Import/Export Player</b>
+						<ul>
+							<li>Select the player in the list and click the export button. Choose a filename</li>
+							<li>To
+import, select the player you wish to import over and click the import
+button. Select the player wish to copy over and click ok</li>
+						</ul>
+<b>Import/Export Team</b>
+						<ul>
+							<li>You can do this in the Squad tab</li>
+							<li>If
+a loaded team contains a player not in the roster, you should remove
+him from the team before playing a game otherwise the team will not
+load properly</li>
+						</ul>
+<b>Multiple Abilities</b>
+						<ul>
+							<li>This changes the abilities of <i>every</i> player in the roster so be careful with it</li>
+<li>You have a choice to set to, increase by, decrease by or scale by a number</li>
+<li>There is no undoing this</li>
+						</ul>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+			</div>
+		</div>
+	</div>
+	
+		<div align="center">
+		<div class="page" style="width: 100%; text-align: left;">
+			<div style="padding: 0px 0px 6px;">
+			<table class="tborder" align="center" border="0" cellpadding="6" cellspacing="0" width="100%">
+				<tbody><tr>
+					<td class="thead" style="font-weight: bold;">		
+						<a name="4">Known issues</a>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td class="alt1">
+						<div>Maidens are 0 for most players - Cricinfo stopped recording them in player stats so EA took them out. I've left them in as EA haven't taken them away from all players. However they don't appear ingame.</div>
+					</td>
+				</tr>
+			</tbody></table>
+			</div>
+		</div>
+	</div>
+	
+			<div align="center">
+		<div class="page" style="width: 100%; text-align: left;">
+			<div style="padding: 0px 0px 6px;">
+			<table class="tborder" align="center" border="0" cellpadding="6" cellspacing="0" width="100%">
+				<tbody><tr>
+					<td class="thead" style="font-weight: bold;">		
+						<a name="5">Change Log</a>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td V6.0.3.0 - 2nd May 2012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                            -&nbsp; Function to change squad names added. Face preview errors solved. Most Stable 
+                            Version.<br />
+                            V6.0.2.0 - 12th November 2011 -&nbsp; Support For HD bat textures added. 
+                            Stability Fix. Speed Boost.<br />
+                            V6.0.1.0 - 21th November 2011 -&nbsp; Support For HD bat textures added.<br />
+                            V6.0.0.0 - 9th November 2011&nbsp;&nbsp; -&nbsp; Windows 7 Support Added. 64 
+                            bit Support Added. Automatic File Name Generator system added, 
+                            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; integerated in 
+                            Shortuct Assigning.<br />
+                            V5.0.0.0 - 4th June 2007&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp; New release with faces overhauled to allow for suncream or not. Vista compatible<br>v4.2.2.1 - 26th January 
+                            2007&nbsp;&nbsp;&nbsp; -&nbsp; Fixed import/export bug and added tmt support bug and added tmt support<br>v4.2.1.1 - 21th December 
+                            2006 -&nbsp; OD display bug fixed, squads added for PS2 and news bats.xml<br>v4.2.0.2 - 10th December 
+                            2006 -&nbsp; Code conversion from c2k5 completed and first general release of Player Editor07<br>v3.0.1.2 - 23th November 
+                            2006 -&nbsp; Final C2k5 Player Editor release<br> <font color="red"><a href="http://www.planetcricket.net/modules.php?name=Links&amp;file=viewlinkinfo&amp;id=631" target="_blank">Download link</a></font>
+						</div>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td class="alt1">
+						&nbsp;</td>
+				</tr>
+			</tbody></table>
+			</div>
+		</div>
+	</div>
+	
+	<div align="center">
+		<div class="page" style="width: 100%; text-align: left;">
+			<div style="padding: 0px 0px 6px;">
+			<table class="tborder" align="center" border="0" cellpadding="6" cellspacing="0" width="100%">
+				<tbody><tr>
+					<td class="thead" style="font-weight: bold;">		
+						<a name="6">Credits</a>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td class="alt1">
+						<div><a href="http://www.planetcricket.net/forums/member.php?u=1641">Prakash</a>
+for all his help and support especially with the c2k5 editor this was converted from. Also thanks to <a href="http://www.planetcricket.net/forums/member.php?u=11215">duded64</a> for his hard work on finding the face filenames and a big thank you to <a href="http://www.planetcricket.net/forums/member.php?u=5508">adthomp</a> for pushing the editor to find all the bugs.<br>
+Thanks also to the PC Patchteam and staff for feedback and bug testing especially <a href="http://www.planetcricket.net/forums/member.php?u=7973">sid_19840</a>, <a href="http://www.planetcricket.net/forums/member.php?u=8186">Burma's Finest</a> and <a href="http://www.planetcricket.net/forums/member.php?u=3954">Kev</a>.<br />
+                            <br />
+                            Thanks To <a href="http://www.planetcricket.net/forums/members/blitz 
+                            for further improving the editor by - Improving assigning To Faces, Solving face 
+                            preview errors, Adding 
+                            stability to 64 bit systems, HD bat texture support, adding function to change 
+                            team names and other few minor changes.<br>
+                            Thanks To Denis Auroux for leting me edit his FSHconverter. me edit his FSHconverter.<br />
+                            <br>
+ImpGUI.exe command tool by GreyMana.<br />
+                            FSHconv by Denis Auroux.<br><br>
+This software uses the FreeImage open source image library. See <a href="http://freeimage.sourceforge.net/">http://freeimage.sourceforge.net</a> for details.<br>
+FreeImage is used under the (GNU GPL or FIPL), version (licence version).
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+			</div>
+		</div>
+	</div>
+	
+	<div align="center">
+		<div class="page" style="width: 100%; text-align: left;">
+			<div style="padding: 0px 0px 6px;">
+			<table class="tborder" align="center" border="0" cellpadding="6" cellspacing="0" width="100%">
+				<tbody><tr>
+					<td class="thead" style="font-weight: bold;">		
+						<a name="7">Legal stuff</a>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td class="alt1">
+						<div>Planetcricket Player Editor07 is © 2006/7 <a href="http://www.planetcricket.net/forums/member.php?u=1634">Colin Chisholm</a>.
+This patch is made for the exclusive distribution on "Planetcricket",
+"Cricket07.net" and the "Planetcricket Forums". No other sites can
+offer this patch for download or link directly to the download zip
+file/downloads page without the permission of Planetcricket. If you
+have downloaded this file from sites other than the 3 above please
+contact <a href="mailto:admin@planetcricket.net">Ste</a>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+			</div>
+		</div>
+	</div>
+<center>Licence 0129PCDC - Download from <a href="http://www.planetcricket.net/dls.htm">Planetcricket Download Centre</a></center>
+</body></html>

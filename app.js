@@ -49,7 +49,9 @@ app.locals.moment = require('moment');
 app.use(flash());
 //mongoose model config
 var blogSchema = new mongoose.Schema({
-    title: String,
+    title: {type:String,
+      index:true,
+     es_indexed:true},
     image: String,
     body: String,
     hits:{type:Number,default:0},
