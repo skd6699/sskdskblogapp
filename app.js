@@ -35,9 +35,21 @@ cloudinary.config({
 
 var app = express();
 //APP CONFIG       
-
-//mongoose.connect('mongodb://localhost:27017/blog_app', { useNewUrlParser : true});
-mongoose.connect(process.env.DATABASEURL,{ useNewUrlParser : true });
+// var MongoClient = require('mongodb').MongoClient;
+// var uri = "mongodb://woozitsolutions:lineages@6699@<hostname>/blog_App?ssl=true&replicaSet=atlas-10vn3c-shard-0&authSource=admin&retryWrites=true&w=majority";
+// MongoClient.connect(uri, function(err, client) {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
+mongoose.connect('mongodb://localhost:27017/blog_app', { useNewUrlParser : true});
+// mongoose.connect('mongodb://woozitsolutions:lineages@6699@<hostname>/blog_app?ssl=true&replicaSet=atlas-10vn3c-shard-0&authSource=admin&retryWrites=true&w=majority',{ useNewUrlParser : true });
+// mongoose.connect('mongodb://woozitsolutions:lineages@6699@<hostname>/blog_App?ssl=true&replicaSet=atlas-10vn3c-shard-0&authSource=admin&retryWrites=true&w=majority', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useFindAndModify: false,
+//   useCreateIndex: true
+// });
 app.set("view engine","ejs");
 app.use(express.static("public"));
 app.use(bodyParser.json());
@@ -425,6 +437,8 @@ app.post("/login", passport.authenticate("local",{
     res.json({"responseCode" : 0,"responseDesc" : "Sucess"});
   });
 });
+
+
 //logout
 app.get("/logout",function(req, res) {
    req.logout();
@@ -631,7 +645,7 @@ function escapeRegex(text) {
 app.use("*",function(req,res) {
   res.status(404).send("404");
 })
-app.listen(process.env.PORT,process.env.IP, function(){
+app.listen(process.env.PORT||3000,process.env.IP, function(){
     console.log("Blog app is running");
 });
       
