@@ -44,7 +44,7 @@ var app = express();
 // });
 // mongoose.connect('mongodb://localhost:27017/blog_app', { useNewUrlParser : true});
 mongoose.connect(process.env.DATABASEURL, { useNewUrlParser : true});
-// mongoose.connect('mongodb://woozitsolutions:lineages@6699@<hostname>/blog_app?ssl=true&replicaSet=atlas-10vn3c-shard-0&authSource=admin&retryWrites=true&w=majority',{ useNewUrlParser : true });
+// mongoose.connect('mongodb+srv://woozitsolutions:N9TkMy7OdSPosJN7@cluster0.nn9vr.mongodb.net/blog_app?retryWrites=true&w=majority',{ useNewUrlParser : true });
 // mongoose.connect('mongodb://woozitsolutions:lineages@6699@<hostname>/blog_App?ssl=true&replicaSet=atlas-10vn3c-shard-0&authSource=admin&retryWrites=true&w=majority', {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
