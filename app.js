@@ -26,12 +26,12 @@ var imageFilter = function (req, file, cb) {
 };
 var upload = multer({ storage: storage, fileFilter: imageFilter})
 
-var cloudinary = require('cloudinary');
-cloudinary.config({ 
-  cloud_name: 'dsk6699', 
-  api_key: process.env.CLOUDINARY_API_KEY, 
-  api_secret: process.env.CLOUDINARY_API_SECRET
-});
+// var cloudinary = require('cloudinary');
+// cloudinary.config({ 
+//   cloud_name: 'dsk6699', 
+//   api_key: '681286353889886', 
+//   api_secret: 'DetJR8nQ2ujoJyJYbphRujS3wvw'
+// });
 
 var app = express();
 //APP CONFIG       
@@ -390,7 +390,7 @@ app.post("/register",upload.single('avatar'),function(req,res){
 
 });
          
-}),function(req,res){
+})/* ,function(req,res){
     if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
     return res.json({"responseCode" : 1,"responseDesc" : "Please select captcha"});
   }
@@ -407,7 +407,7 @@ app.post("/register",upload.single('avatar'),function(req,res){
     }
     res.json({"responseCode" : 0,"responseDesc" : "Sucess"});
   });
-}
+} */
 
 //show login
 var u;
@@ -421,7 +421,7 @@ app.post("/login", passport.authenticate("local",{
     failureRedirect: "/login",
     failureFlash: 'Invalid username or password.',
      successFlash: 'Welcome!'
-}),function(req, res) {
+})/* ,function(req, res) {
      if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
     return res.json({"responseCode" : 1,"responseDesc" : "Please select captcha"});
   }
@@ -438,7 +438,7 @@ app.post("/login", passport.authenticate("local",{
     }
     res.json({"responseCode" : 0,"responseDesc" : "Sucess"});
   });
-});
+} */);
 
 
 //logout
